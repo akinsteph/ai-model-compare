@@ -20,8 +20,26 @@ limiter = Limiter(
 
 # Configuration
 app.config['GA_TRACKING_ID'] = 'YOUR-GA-TRACKING-ID'  # Replace with your Google Analytics tracking ID
-visit_count = 0
-api_calls = 0
+
+def load_stats():
+    try:
+        with open('data/stats.json', 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        stats = {"visit_count": 0, "api_calls": 0, "last_updated": None}
+        save_stats(stats)
+        return stats
+
+def save_stats(stats):
+    with open('data/stats.json', 'w') as f:
+        json.dump(stats, f, indent=4)
+
+def increment_stat(stat_name):
+    stats = load_stats()
+    stats[stat_name] += 1
+    stats['last_updated'] = datetime.now().isoformat()
+    save_stats(stats)
+    return stats[stat_name]
 
 def load_ai_models():
     with open('data/models.json', 'r') as f:
@@ -47,8 +65,8 @@ def update_pricing_background():
 
 @app.route('/')
 def index():
-    global visit_count
-    visit_count += 1
+    visit_count = increment_stat('visit_count')
+    stats = load_stats()
     
     models = load_ai_models()
     current_pricing = load_current_pricing()
@@ -57,14 +75,13 @@ def index():
                          current_pricing=current_pricing,
                          last_updated=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                          visit_count=visit_count,
-                         api_calls=api_calls,
+                         api_calls=stats['api_calls'],
                          ga_id=app.config['GA_TRACKING_ID'])
 
 @app.route('/api/pricing')
 @limiter.limit("60 per minute")
 def get_pricing():
-    global api_calls
-    api_calls += 1
+    api_calls = increment_stat('api_calls')
     current_pricing = load_current_pricing()
     return jsonify(current_pricing)
 
