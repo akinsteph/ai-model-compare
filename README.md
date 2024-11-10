@@ -12,10 +12,6 @@ A modern web application that provides real-time comparisons of AI model pricing
 - RESTful API endpoints
 - Automated price updates
 
-## Live Demo 🌐
-
-Visit: [https://ai-model-compare.herokuapp.com](https://ai-model-compare.herokuapp.com)
-
 ## API Documentation 📚
 
 ### Endpoints
