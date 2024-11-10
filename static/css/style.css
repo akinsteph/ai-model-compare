@@ -1,0 +1,277 @@
+:root {
+    --primary-color: #0a0a0a;
+    --secondary-color: #1a1a1a;
+    --accent-color: #e94560;
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --hover-color: #533483;
+    --card-bg: rgba(31, 31, 58, 0.3);
+    --table-header: linear-gradient(135deg, #0f3460, #533483);
+    --table-hover: rgba(233, 69, 96, 0.1);
+    --docs-card-color: rgba(236, 236, 238, 0.8);
+    --muted-color: rgb(105 105 105);
+}
+
+body {
+    background: linear-gradient(180deg, var(--secondary-color) 10%, var(--primary-color) 90%);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: 600;
+}
+
+.container {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    background: var(--card-bg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.card-header {
+    background: var(--table-header);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    padding: 1.2rem;
+}
+
+.card-body {
+    color: var(--docs-card-color);
+}
+
+.text-muted {
+    color: var(--muted-color) !important;
+}
+
+.table-responsive {
+    margin-top: 20px;
+    background: rgba(31, 31, 58, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-table {
+    background: transparent;
+    margin: 0;
+}
+
+.glass-table thead th {
+    background: rgba(15, 52, 96, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: 600;
+}
+
+.glass-table tbody tr {
+    background: rgba(31, 31, 58, 0.2);
+    transition: all 0.3s ease;
+}
+
+.glass-table tbody tr:hover {
+    background: rgba(233, 69, 96, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-tabs {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-tabs .nav-link {
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    margin-right: 5px;
+    border-radius: 10px 10px 0 0;
+    background: rgba(31, 31, 58, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.nav-tabs .nav-link:hover {
+    border: none;
+    background: rgba(233, 69, 96, 0.1);
+}
+
+.nav-tabs .nav-link.active {
+    color: #fff;
+    background: rgba(15, 52, 96, 0.5);
+    border: none;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .table td,
+    .table th {
+        min-width: 200px;
+        font-size: 0.9rem;
+    }
+
+    .stats-card {
+        margin-bottom: 15px;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+.footer {
+    background: var(--primary-color);
+    margin-top: auto;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+}
+
+.table td {
+    vertical-align: middle;
+    padding: 15px;
+    border-color: #eee;
+}
+
+.table td ul {
+    margin-bottom: 0;
+}
+
+.table td li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.table td li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(9, 132, 227, 0.05);
+}
+
+.btn-info {
+    background-color: var(--secondary-color);
+    border: none;
+    color: white;
+}
+
+.btn-info:hover {
+    background-color: var(--hover-color);
+    color: white;
+}
+
+.stats-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.stats-label {
+    color: var(--text-color);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.api-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.api-link:hover {
+    color: var(--hover-color);
+}
+
+.last-updated {
+    font-size: 0.9em;
+    color: #666;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.modal-content {
+    border-radius: 10px;
+    border: none;
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-body pre {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.price-update {
+    animation: pulse 1s;
+}

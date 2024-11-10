@@ -1,0 +1,27 @@
+{
+    "last_updated": "2024-11-10T15:13:45.389494",
+    "providers": {
+        "openai": {
+            "gpt4": {
+                "input": null,
+                "output": null
+            },
+            "gpt35": {
+                "input": null,
+                "output": null
+            }
+        },
+        "anthropic": {
+            "claude2": {
+                "input": null,
+                "output": null
+            }
+        },
+        "google": {
+            "palm2": {
+                "input": null,
+                "output": null
+            }
+        }
+    }
+}

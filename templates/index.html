@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Comparison</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', '{{ ga_id }}');
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">AI Model Comparison Tool</a>
+            <div class="d-flex">
+                <a href="/api/docs" class="btn btn-outline-light me-2">API Docs</a>
+                <a href="https://github.com/yourusername/ai-model-compare" class="btn btn-outline-light">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 mb-3">Compare AI Models</h2>
+            <p class="lead text-light opacity-75">
+                Compare pricing, features, and capabilities of the most widely accessible AI models.
+                This curated list focuses on popular, production-ready models from major providers.
+                Stay updated with real-time pricing information and make informed decisions
+                for your AI implementation needs.
+            </p>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="stats-number">{{ visit_count }}</div>
+                    <div class="stats-label">Total Visits</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="stats-number">{{ api_calls }}</div>
+                    <div class="stats-label">API Calls</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="stats-number" id="last-updated">{{ last_updated }}</div>
+                    <div class="stats-label">Last Price Update</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <ul class="nav nav-tabs mb-3" id="modelTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="api-tab" data-bs-toggle="tab" data-bs-target="#api"
+                                type="button" role="tab">API Models</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="chat-tab" data-bs-toggle="tab" data-bs-target="#chat"
+                                type="button" role="tab">Chat Models</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="modelTabsContent">
+                        <div class="tab-pane fade show active" id="api" role="tabpanel">
+                            <table class="table table-dark table-hover glass-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Provider</th>
+                                        <th>Pay-as-you-go Pricing</th>
+                                        <th>Limits</th>
+                                        <th>Features</th>
+                                        <th>Use Cases</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for model in models.models %}
+                                    <tr>
+                                        <td>{{ model.name }}</td>
+                                        <td>{{ model.provider }}</td>
+                                        <td>
+                                            <p><strong>Input:</strong> {{ model.pricing.pay_as_you_go.input }}</p>
+                                            <p><strong>Output:</strong> {{ model.pricing.pay_as_you_go.output }}</p>
+                                        </td>
+                                        <td>
+                                            <p><strong>Context:</strong> {{ model.limits.context_window }}</p>
+                                            <p><strong>Requests/min:</strong> {{ model.limits.requests_per_min }}</p>
+                                            <p><strong>Daily limit:</strong> {{ model.limits.daily_limit }}</p>
+                                        </td>
+                                        <td>
+                                            <ul class="list-unstyled mb-0">
+                                                {% for feature in model.features %}
+                                                <li>{{ feature }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="list-unstyled mb-0">
+                                                {% for use_case in model.use_cases %}
+                                                <li>{{ use_case }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="chat" role="tabpanel">
+                            <table class="table table-dark table-hover glass-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Provider</th>
+                                        <th>Subscription</th>
+                                        <th>Features</th>
+                                        <th>Limits</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for model in models.models %}
+                                    {% if model.pricing.subscription.name != "Self-hosted" %}
+                                    <tr>
+                                        <td>{{ model.name }}</td>
+                                        <td>{{ model.provider }}</td>
+                                        <td>
+                                            <p><strong>{{ model.pricing.subscription.name }}</strong></p>
+                                            <p><strong>Price:</strong> {{ model.pricing.subscription.price }}</p>
+                                            <ul class="list-unstyled mb-0">
+                                                {% for feature in model.pricing.subscription.features %}
+                                                <li>- {{ feature }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="list-unstyled mb-0">
+                                                {% for feature in model.features %}
+                                                <li>{{ feature }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <p><strong>Context:</strong> {{ model.limits.context_window }}</p>
+                                            <p><strong>Daily limit:</strong> {{ model.limits.daily_limit }}</p>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3">
+        <div class="container text-center">
+            <p class="text-muted">
+                Developed with ❤️ by <a href="https://github.com/akinsteph" class="text-light">Stephen Akinola</a>
+            </p>
+            <p class="text-muted small">
+                "Comparing AI models shouldn't be rocket science... unless you're training an AI for rocket science!"
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to update pricing
+        function updatePricing() {
+            fetch('/api/pricing')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.providers) {
+                        // Update the pricing cells
+                        document.querySelectorAll('.price-cell').forEach(cell => {
+                            const provider = cell.dataset.provider;
+                            const model = cell.dataset.model;
+                            if (data.providers[provider] && data.providers[provider][model]) {
+                                cell.textContent = data.providers[provider][model];
+                            }
+                        });
+
+                        // Update last updated timestamp
+                        const timestamp = new Date(data.last_updated).toLocaleString();
+                        document.getElementById('last-updated').textContent = ${ timestamp };
+                    }
+                })
+                .catch(error => console.error('Error fetching pricing:', error));
+        }
+
+        // Update pricing every 5 minutes
+        setInterval(updatePricing, 300000);
+
+        // Initial update
+        updatePricing();
+    </script>
+</body>
+
+</html>

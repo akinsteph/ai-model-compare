@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Compare API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">AI Model Comparison Tool</a>
+            <div class="d-flex">
+                <a href="/" class="btn btn-outline-light">Back to Compare</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">API Documentation</h2>
+            </div>
+            <div class="card-body">
+                <h3>Endpoints</h3>
+
+                <h4 class="mt-4">1. Get Current Pricing</h4>
+                <pre><code>GET /api/pricing</code></pre>
+                <p>Returns the current pricing information for all AI models.</p>
+
+                <h5>Example Response:</h5>
+                <pre><code>{
+    "last_updated": "2024-11-10T14:00:00.000Z",
+    "providers": {
+        "openai": {
+            "gpt4": {
+                "input": "$0.03/1K tokens",
+                "output": "$0.06/1K tokens"
+            },
+            "gpt35": {
+                "input": "$0.0015/1K tokens",
+                "output": "$0.002/1K tokens"
+            }
+        }
+        // ... other providers
+    }
+}</code></pre>
+
+                <h4 class="mt-4">2. Refresh Pricing</h4>
+                <pre><code>GET /api/refresh-pricing</code></pre>
+                <p>Triggers an immediate refresh of the pricing data.</p>
+
+                <h5>Example Response:</h5>
+                <pre><code>{
+    "status": "success",
+    "data": {
+        // Updated pricing data
+    }
+}</code></pre>
+
+                <h3 class="mt-5">Rate Limits</h3>
+                <ul>
+                    <li>Pricing endpoint: 60 requests per minute</li>
+                    <li>Refresh endpoint: 1 request per minute</li>
+                </ul>
+
+                <h3 class="mt-5">Example Usage</h3>
+                <pre><code>curl https://your-domain.com/api/pricing</code></pre>
+            </div>
+        </div>
+    </div>
+    <footer class="footer mt-5 py-3">
+        <div class="container text-center">
+            <p class="text-muted">
+                Developed with ❤️ by <a href="https://github.com/akinsteph" class="text-light">Stephen Akinola</a>
+            </p>
+            <p class="text-muted small">
+                "Comparing AI models shouldn't be rocket science... unless you're training an AI for rocket science!"
+            </p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

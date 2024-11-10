@@ -1,0 +1,251 @@
+{
+    "models": [
+        {
+            "name": "GPT-4",
+            "provider": "OpenAI",
+            "pricing": {
+                "pay_as_you_go": {
+                    "input": "$0.03/1K tokens",
+                    "output": "$0.06/1K tokens"
+                },
+                "subscription": {
+                    "name": "ChatGPT Plus",
+                    "price": "$20/month",
+                    "features": [
+                        "Priority access to GPT-4",
+                        "Limited to 40 messages/3 hours",
+                        "Faster response times",
+                        "Early access to features"
+                    ]
+                }
+            },
+            "features": [
+                "Most capable GPT model",
+                "Complex task solving",
+                "Advanced reasoning",
+                "Creative content generation"
+            ],
+            "limits": {
+                "context_window": "8K tokens",
+                "requests_per_min": "500",
+                "daily_limit": "100,000 tokens"
+            },
+            "use_cases": [
+                "Code generation",
+                "Analysis",
+                "Writing",
+                "Math"
+            ]
+        },
+        {
+            "name": "GPT-3.5-turbo",
+            "provider": "OpenAI",
+            "pricing": {
+                "pay_as_you_go": {
+                    "input": "$0.0015/1K tokens",
+                    "output": "$0.002/1K tokens"
+                },
+                "subscription": {
+                    "name": "ChatGPT Free",
+                    "price": "$0/month",
+                    "features": [
+                        "Basic access",
+                        "Standard response time",
+                        "Limited to peak hours"
+                    ]
+                }
+            },
+            "features": [
+                "Fast and efficient",
+                "Good balance of capability/cost",
+                "Chat optimization"
+            ],
+            "limits": {
+                "context_window": "4K tokens",
+                "requests_per_min": "3500",
+                "daily_limit": "250,000 tokens"
+            },
+            "use_cases": [
+                "Chatbots",
+                "Content generation",
+                "Classification"
+            ]
+        },
+        {
+            "name": "Claude 2",
+            "provider": "Anthropic",
+            "pricing": {
+                "pay_as_you_go": {
+                    "input": "$0.008/1K tokens",
+                    "output": "$0.024/1K tokens"
+                },
+                "subscription": {
+                    "name": "Claude Pro",
+                    "price": "$20/month",
+                    "features": [
+                        "Priority access",
+                        "5x more usage than free tier",
+                        "Faster response times"
+                    ]
+                }
+            },
+            "features": [
+                "100K context window",
+                "Strong reasoning",
+                "Factual responses"
+            ],
+            "limits": {
+                "context_window": "100K tokens",
+                "requests_per_min": "450",
+                "daily_limit": "unlimited with subscription"
+            },
+            "use_cases": [
+                "Document analysis",
+                "Research",
+                "Writing"
+            ]
+        },
+        {
+            "name": "PaLM 2",
+            "provider": "Google",
+            "pricing": {
+                "pay_as_you_go": {
+                    "input": "$0.0005/1K tokens",
+                    "output": "$0.0005/1K tokens"
+                },
+                "subscription": {
+                    "name": "Vertex AI Enterprise",
+                    "price": "Custom pricing",
+                    "features": [
+                        "Enterprise support",
+                        "Custom model training",
+                        "SLA guarantees"
+                    ]
+                }
+            },
+            "features": [
+                "Multilingual support",
+                "Code understanding",
+                "Efficient processing"
+            ],
+            "limits": {
+                "context_window": "8K tokens",
+                "requests_per_min": "600",
+                "daily_limit": "varies by contract"
+            },
+            "use_cases": [
+                "Translation",
+                "Code analysis",
+                "Q&A"
+            ]
+        },
+        {
+            "name": "Gemini Ultra",
+            "provider": "Google",
+            "pricing": {
+                "pay_as_you_go": {
+                    "input": "$0.00075/1K tokens",
+                    "output": "$0.0012/1K tokens"
+                },
+                "subscription": {
+                    "name": "Google One AI Premium",
+                    "price": "$19.99/month",
+                    "features": [
+                        "Access to Gemini Ultra",
+                        "2TB Google One storage",
+                        "Premium Google Workspace features",
+                        "Advanced AI features in Gmail and Docs"
+                    ]
+                }
+            },
+            "features": [
+                "Most capable Google AI model",
+                "Multimodal processing",
+                "Complex reasoning",
+                "Advanced code generation"
+            ],
+            "limits": {
+                "context_window": "128K tokens",
+                "requests_per_min": "1500",
+                "daily_limit": "unlimited with subscription"
+            },
+            "use_cases": [
+                "Enterprise solutions",
+                "Research analysis",
+                "Complex coding tasks",
+                "Creative projects"
+            ]
+        },
+        {
+            "name": "Gemini Pro",
+            "provider": "Google",
+            "pricing": {
+                "pay_as_you_go": {
+                    "input": "$0.00025/1K tokens",
+                    "output": "$0.0005/1K tokens"
+                },
+                "subscription": {
+                    "name": "Google AI Studio Pro",
+                    "price": "$29.99/month",
+                    "features": [
+                        "Higher rate limits",
+                        "Priority access",
+                        "Advanced features",
+                        "Early access to updates"
+                    ]
+                }
+            },
+            "features": [
+                "Multimodal capabilities",
+                "Advanced reasoning",
+                "Code generation",
+                "Real-time processing"
+            ],
+            "limits": {
+                "context_window": "32K tokens",
+                "requests_per_min": "1000",
+                "daily_limit": "unlimited with subscription"
+            },
+            "use_cases": [
+                "Image analysis",
+                "Code assistance",
+                "Content creation",
+                "Data analysis"
+            ]
+        },
+        {
+            "name": "Llama 2",
+            "provider": "Meta",
+            "pricing": {
+                "pay_as_you_go": {
+                    "input": "Self-hosted",
+                    "output": "Self-hosted"
+                },
+                "subscription": {
+                    "name": "Self-hosted",
+                    "price": "Hardware costs only",
+                    "features": [
+                        "Full control",
+                        "No usage limits",
+                        "Private deployment"
+                    ]
+                }
+            },
+            "features": [
+                "Open source",
+                "Customizable",
+                "Local deployment"
+            ],
+            "limits": {
+                "context_window": "4K tokens",
+                "requests_per_min": "Hardware dependent",
+                "daily_limit": "Unlimited"
+            },
+            "use_cases": [
+                "Enterprise solutions",
+                "Custom applications",
+                "Private deployments"
+            ]
+        }
+    ]
+}
